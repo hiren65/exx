@@ -35,7 +35,28 @@ while True:
             print("no proper input")
 
 
+# ENTERING ROW NUMBER AND COLUMN NUMBER YOU GET OR READ VALUE INSIDE CELL\
 
+getCellValue = str(sheet.cell(row=8,column=2).value)
+print(getCellValue)
+
+def findCell():
+    search = input("enter your word >")
+    for i in range(1, 9):
+        cellValue = sheet.cell(row=i, column=2)
+        print(cellValue.value)
+        print(str(cellValue.value))
+        if  search == str(cellValue.value):
+            nextCellValue = sheet.cell(row=i, column=3)
+            print("your next adjacent cell {} Bingo".format(nextCellValue.value))
+            break
+        else:
+            print("your word not found in the row!!!")
+            continue
+
+
+
+findCell()
 
 #    print(sheet[yourCell].value)
 
