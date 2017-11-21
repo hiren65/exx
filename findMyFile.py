@@ -22,16 +22,17 @@ def dailyDownloadFile():
     return  todayDate
 
 while True:
-    givenName = input('Give file name ? >')
+    givenName = input('Give file name OR press Enter to get name of daily download excel file ? >')
     if givenName == "":
         givenName = dailyDownloadFile()
 
-    if givenName == 'done':
+    if givenName == 'done'or givenName == 'exit':
         break
     if givenName == 'help':
         print('type in Give File Nmae *.extention or filr name')
         print('type in Give File Path /dir1/secondary diectory/')
-        print("type 'done' to exit programe ")
+        print("type 'done' or 'exit' to exit programe ")
+        print("type 'sifile' to get daily down load xlsx file")
     if givenName == "sifile":
          pathName = input('give path to get Daily down load file ? >')
 
