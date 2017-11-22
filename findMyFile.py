@@ -1,4 +1,5 @@
 import glob, os
+import openpyxl
 
 
 
@@ -19,7 +20,26 @@ def dailyDownloadFile():
     print(mydate.strftime("%b"))
     todayDate = time.strftime(currentMonth+"_%dth_%Y.xlsx")
     print(file_extn+todayDate)
-    return  todayDate
+    return  file_extn+todayDate
+
+def search(excelPath,file):
+    os.chdir(excelPath)
+    # assign existing file to variable workbook
+    workbook = openpyxl.load_workbook(file)
+    sheet = workbook.get_sheet_by_name('Sheet1')
+
+    search = input("enter your word >")
+    for i in range(1, 9):
+        cellValue = sheet.cell(row=i, column=2)
+        print(cellValue.value)
+        print(str(cellValue.value))
+        if search == str(cellValue.value):
+            nextCellValue = sheet.cell(row=i, column=3)
+            print("your next adjacent cell {} Bingo".format(nextCellValue.value))
+            break
+        else:
+            print("your word not found in the row!!!")
+            continue
 
 while True:
     givenName = input('Give file name OR press Enter to get name of daily download excel file ? >')
@@ -35,9 +55,10 @@ while True:
         print("type 'sifile' to get daily down load xlsx file")
     if givenName == "sifile":
          pathName = input('give path to get Daily down load file ? >')
+         givenName = dailyDownloadFile()
+         print("pathName is {} file is {}".format(pathName, givenName))
+         search(pathName, givenName)
 
-         pathNameExten = os.path.join(pathName, '*/')
-         #dailyDownloadFile()
          continue
 
     else:
@@ -45,13 +66,6 @@ while True:
         pathNameExten = os.path.join(pathName, '*/')
         find(givenName, pathNameExten)
         continue
-
-
-
-
-
-
-
 
 
 
